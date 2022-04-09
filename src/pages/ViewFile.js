@@ -53,9 +53,10 @@ const ViewFile = () => {
     }
   }, [fdata]);
 
+
   const shortenURL = async () => {
     try {
-      const url = window.location.href;
+      const url = fdata && fdata.data;
       onOpenModal();
       const result = await fetch(
         `https://api.tinyurl.com/create?api_token=${apiKey}`,
