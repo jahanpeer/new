@@ -1,0 +1,160 @@
+.filesContainer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 30px;
+  margin-left: 100px;
+}
+
+.fileCard {
+  display: flex;
+  margin: 15px;
+  padding: 0 20px 0px 20px;
+  /* justify-content: space-between; */
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+  width: 100%;
+  max-width: 260px;
+  /* background-color: #ffefaf; */
+  background-color: rgb(20, 20, 20);
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.fileCard:hover {
+  box-shadow: 0px 0px 10px 1px rgba(143, 143, 143, 1);
+}
+
+.fileContainer {
+  position: relative;
+}
+
+.fileTransparent {
+  z-index: 100;
+  position: absolute;
+  height: 170px;
+  width: 300px;
+  background: transparent;
+}
+
+.btn {
+  /* margin: 15px; */
+  border-style: none;
+  padding: 10px 20px 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: rgb(75, 75, 75);
+  border-radius: 10px;
+  color: white;
+}
+
+.save:hover {
+  background-color: #dd0000;
+}
+
+.save {
+  background-color: #CC0000;
+}
+
+.encrypt:hover {
+  /* background-color: rgb(185, 185, 54); */
+  background: black;
+  
+}
+
+.encrypt {
+  /* background-color: rgb(161, 161, 47); */
+  background: transparent;
+  border: 0.5px solid white !important;
+  border-style: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px;
+  
+}
+
+.allFiles {
+ background-color: rgb(75, 75, 207);
+}
+
+.allFiles:hover {
+  background-color: rgb(68, 68, 182);
+}
+
+.delete {
+  background-color: rgb(206, 36, 36);
+  color: white;
+}
+
+.renew {
+  margin: 15px;
+  color: white;
+  background-color: rgb(0, 107, 0);
+}
+
+.renew:hover {
+  background-color: rgb(0, 134, 0);
+}
+
+.delete:hover {
+  background-color: rgb(180, 33, 33);
+}
+
+.fileCard h4 {
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin: 0;
+  display: flex;
+  /* margin-top: 60px; */
+  text-decoration: underline;
+}
+
+.fileVideo {
+ width: 300px;
+ height: 170px;
+ z-index: 50;
+}
+
+.noVideo{
+  width: 300px;
+  height: 170px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fileCard h4:hover {
+  color: rgb(12, 88, 114);
+}
+
+.AllFilesPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link button {
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: rgb(75, 75, 207);
+  color: white;
+}
+.link button:hover {
+  box-shadow: 0px 0px 10px 1px rgba(143, 143, 143, 1);
+}
+
+.newLink{
+  background-color: transparent;
+}
+.navigation{
+  position: absolute;
+  top: 15px;
+}

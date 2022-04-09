@@ -1,0 +1,50 @@
+.logPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.logContainer {
+  width: 900px;
+  /* background-color: rgb(35,35,35); */
+  border-radius: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin: 10px;
+  margin-right: 20px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(202, 202, 202, 0.616);
+  padding: 10px;
+  color: black;
+}
+
+.heading {
+  font-weight: 700;
+}
+ 
+.sno {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ip {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
