@@ -24,9 +24,7 @@ const ViewAll = () => {
       .get(`${BACKEND_SERVER}/showAllData`)
       .then((res) => {
         const presentTime = new Date().getTime();
-        const results = res.data.datas.filter((item) => {
-          return item.expiryDate > presentTime;
-        });
+        const results = res.data.datas;
         setAllFiles(results);
         setisLoading(false);
       })
