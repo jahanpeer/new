@@ -74,7 +74,7 @@ const AccessLogs = () => {
     return (
       <div className="expireScreen">
         <h1 className="generating">
-          <ClipLoader color={"black"} size={50} />
+          <ClipLoader color={"white"} size={50} />
         </h1>
       </div>
     );

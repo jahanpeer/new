@@ -53,7 +53,6 @@ const ViewFile = () => {
     }
   }, [fdata]);
 
-
   const shortenURL = async () => {
     try {
       const url = fdata && fdata.data;
@@ -153,146 +152,133 @@ const ViewFile = () => {
     }
   }, [fdata]);
 
-  if (isExpired) {
+  if (fdata) {
     return (
       <>
-        <div className="expireScreen">
-          <h1>This Link has expired!</h1>
-          <Link to="/">
-            <button className="btn allFiles">Go to Home Page</button>
-          </Link>
-        </div>
+        {isEncrypted ? (
+          <div className="expireScreen">
+            <div className="navigation">
+              <Link to="/">
+                <button className="btn allFiles newLink">
+                  {" "}
+                  <div className="iconButton">
+                    <BsPlus className="icon deleteIcon " />
+                    <span>Shorten New Link</span>
+                  </div>
+                </button>
+              </Link>
+              <Link to="/allFiles">
+                <button className="btn renew newLink">
+                  <div className="iconButton">
+                    <BsArrowLeftShort className="icon deleteIcon " />
+                    <span>Back</span>
+                  </div>
+                </button>
+              </Link>
+            </div>
+            <h1>
+              The link is encrypted. Please enter the key to open the link.
+            </h1>
+            <input
+              type="password"
+              placeholder="Enter the key"
+              value={decryptionKey}
+              onChange={(e) => setDecryptionKey(e.target.value)}
+            />
+            <button className="btn save" onClick={decryptData}>
+              Decrypt
+            </button>
+            <ToastContainer />
+          </div>
+        ) : (
+          <div className="viewPage">
+            <div className="top">
+              <Link to="/">
+                <button className="btn allFiles newLink">
+                  {" "}
+                  <div className="iconButton">
+                    <BsPlus className="icon deleteIcon " />
+                    <span>Shorten New Link</span>
+                  </div>
+                </button>
+              </Link>
+              <Link to={"/logs/" + id}>
+                <button className="btn renew newLink">
+                  <div className="iconButton">
+                    <BsClockHistory className="icon deleteIcon " />
+                    <span>Access Logs</span>
+                  </div>
+                </button>
+              </Link>
+            </div>
+            <h1>{fdata.name}</h1>
+            {/* <div className="textContainer">{parse(renderData)}</div> */}
+            <Youtube className="videoPlayer" videoId={videoCode} />
+            <div className="modalBtnContainer">
+              <button className="btn renew" onClick={shortenURL}>
+                <div className="iconButton">
+                  <MdShare className="icon deleteIcon " />
+                  <span>Share</span>
+                </div>
+              </button>
+            </div>
+            <Modal
+              open={open}
+              onClose={onCloseModal}
+              center
+              classNames={"modal"}
+            >
+              <h2 className="modalText">Share</h2>
+              <p>
+                {shortURL ? (
+                  <div>
+                    <input
+                      type="text"
+                      value={shortURL}
+                      className="modalInput"
+                    />
+                    <div className="modalBtnContainer">
+                      <button
+                        className="btn modalBtn allFiles"
+                        onClick={() => {
+                          navigator.clipboard.writeText(shortURL);
+                          toast.warn("Copied !", {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                          });
+                        }}
+                      >
+                        Copy to Clipboard!
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="modalText generating">
+                      Generating... <br />
+                      <ClipLoader color={"black"} size={20} />
+                    </h3>
+                  </div>
+                )}
+              </p>
+            </Modal>
+            <ToastContainer />
+          </div>
+        )}
       </>
     );
   } else {
-    if (fdata) {
-      return (
-        <>
-          {isEncrypted ? (
-            <div className="expireScreen">
-              <div className="navigation">
-                <Link to="/">
-                  <button className="btn allFiles newLink">
-                    {" "}
-                    <div className="iconButton">
-                      <BsPlus className="icon deleteIcon " />
-                      <span>Shorten New Link</span>
-                    </div>
-                  </button>
-                </Link>
-                <Link to="/allFiles">
-                  <button className="btn renew newLink">
-                    <div className="iconButton">
-                      <BsArrowLeftShort className="icon deleteIcon " />
-                      <span>Back</span>
-                    </div>
-                  </button>
-                </Link>
-              </div>
-              <h1>
-                The link is encrypted. Please enter the key to open the link.
-              </h1>
-              <input
-                type="password"
-                placeholder="Enter the key"
-                value={decryptionKey}
-                onChange={(e) => setDecryptionKey(e.target.value)}
-              />
-              <button className="btn save" onClick={decryptData}>
-                Decrypt
-              </button>
-              <ToastContainer />
-            </div>
-          ) : (
-            <div className="viewPage">
-              <div className="top">
-                <Link to="/">
-                  <button className="btn allFiles newLink">
-                    {" "}
-                    <div className="iconButton">
-                      <BsPlus className="icon deleteIcon " />
-                      <span>Shorten New Link</span>
-                    </div>
-                  </button>
-                </Link>
-                <Link to={"/logs/" + id}>
-                  <button className="btn renew newLink">
-                    <div className="iconButton">
-                      <BsClockHistory className="icon deleteIcon " />
-                      <span>Access Logs</span>
-                    </div>
-                  </button>
-                </Link>
-              </div>
-              <h1>{fdata.name}</h1>
-              {/* <div className="textContainer">{parse(renderData)}</div> */}
-              <Youtube className="videoPlayer" videoId={videoCode} />
-              <div className="modalBtnContainer">
-                <button className="btn renew" onClick={shortenURL}>
-                  <div className="iconButton">
-                    <MdShare className="icon deleteIcon " />
-                    <span>Share</span>
-                  </div>
-                </button>
-              </div>
-              <Modal
-                open={open}
-                onClose={onCloseModal}
-                center
-                classNames={"modal"}
-              >
-                <h2 className="modalText">Share</h2>
-                <p>
-                  {shortURL ? (
-                    <div>
-                      <input
-                        type="text"
-                        value={shortURL}
-                        className="modalInput"
-                      />
-                      <div className="modalBtnContainer">
-                        <button
-                          className="btn modalBtn allFiles"
-                          onClick={() => {
-                            navigator.clipboard.writeText(shortURL);
-                            toast.warn("Copied !", {
-                              position: "top-right",
-                              autoClose: 3000,
-                              hideProgressBar: false,
-                              closeOnClick: true,
-                              pauseOnHover: true,
-                              draggable: true,
-                              progress: undefined,
-                              theme: "dark",
-                            });
-                          }}
-                        >
-                          Copy to Clipboard!
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      <h3 className="modalText generating">
-                        Generating... <br />
-                        <ClipLoader color={"black"} size={20} />
-                      </h3>
-                    </div>
-                  )}
-                </p>
-              </Modal>
-              <ToastContainer />
-            </div>
-          )}
-        </>
-      );
-    } else {
-      return (
-        <div className="expireScreen">
-          <ClipLoader color={"black"} size={50} />
-        </div>
-      );
-    }
+    return (
+      <div className="expireScreen">
+        <ClipLoader color={"white"} size={50} />
+      </div>
+    );
   }
 };
 
